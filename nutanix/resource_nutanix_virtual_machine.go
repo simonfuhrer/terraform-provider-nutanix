@@ -232,6 +232,11 @@ func resourceNutanixVirtualMachine() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+                                                "ip_address": {
+                                                        Type:     schema.TypeString,
+							Optional: true,
+                                                        Computed: true,
+                                                },
 						"ip_endpoint_list": {
 							Type:     schema.TypeList,
 							Optional: true,

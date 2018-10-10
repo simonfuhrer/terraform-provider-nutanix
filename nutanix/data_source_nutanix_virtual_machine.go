@@ -232,6 +232,10 @@ func dataSourceNutanixVirtualMachine() *schema.Resource {
 							Type:     schema.TypeString,
 							Computed: true,
 						},
+                                                "ip_address": {
+                                                        Type:     schema.TypeString,
+                                                        Computed: true,
+                                                },
 						"ip_endpoint_list": {
 							Type:     schema.TypeList,
 							Computed: true,

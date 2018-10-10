@@ -34,14 +34,17 @@ func flattenNicList(nics []*v3.VMNicOutputStatus) []map[string]interface{} {
 			nic["mac_address"] = utils.StringValue(v.MacAddress)
 			nic["model"] = utils.StringValue(v.Model)
 			var ipEndpointList []map[string]interface{}
+			var ipAddress string
 			for _, v1 := range v.IPEndpointList {
 				ipEndpoint := make(map[string]interface{})
 				ipEndpoint["ip"] = utils.StringValue(v1.IP)
 				ipEndpoint["type"] = utils.StringValue(v1.Type)
 				if ipEndpoint["type"] != "LEARNED" {
 					ipEndpointList = append(ipEndpointList, ipEndpoint)
+					ipAddress = ipEndpoint["ip"].(string)
 				}
 			}
+			nic["ip_address"] = ipAddress
 			nic["ip_endpoint_list"] = ipEndpointList
 			nic["network_function_chain_reference"] = flattenReferenceValues(v.NetworkFunctionChainReference)
 			nic["subnet_reference"] = getClusterReferenceValues(v.SubnetReference)
